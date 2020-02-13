@@ -1,18 +1,33 @@
 package FileReader.JavaReader;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JavaFileReader {
-
+    List<JavaLineDetails> lineDetails;
     public List<JavaLineDetails> readDetails(File file) {
+        lineDetails = new ArrayList<>();
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                int number=0;
+                    while ((line = br.readLine()) != null) {
+                        // process the line.
+                        number++;
+                        JavaLineDetails jr = new JavaLineDetails(file,number,line);
 
-        JavaLineDetails jr = new JavaLineDetails(file,1,"ser");
 
-        List<JavaLineDetails> lineDetails = new ArrayList<>();
+                        lineDetails.add(jr);
 
-        lineDetails.add(jr);
+                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return lineDetails;
 

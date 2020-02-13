@@ -8,6 +8,8 @@ import FileReader.ManifestReader.ManifestDetails;
 import FileReader.ManifestReader.ManifestFileReader;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,23 +46,26 @@ public class MainBoard {
         for (int i=0;i<GradleFile.size();i++){
             GradleFIleReader gd = new GradleFIleReader();
             GradleDetails gds = gd.readDetails(GradleFile.get(i));
-            System.out.println(gds.getCompileSdk());
-            System.out.println(gds.getMinSdk());
-            System.out.println(gds.getTargetSdk());
-            System.out.println(gds.getDependencies().size());
-            System.out.println(gds.getCodeDetails().size());
 
         }
 
 
-
+        List<JavaLineDetails> alllines = new ArrayList<>();
         for(int i=0;i<JFiles.size();i++){
+
             JavaFileReader jr = new JavaFileReader();
             List<JavaLineDetails> jrd =  jr.readDetails(JFiles.get(i));
-            for (int k=0;k<jrd.size();k++){
-                System.out.println(jrd.get(k).getFileP()+" : "+jrd.get(k).getLineNumber()+" : "+jrd.get(k).getCodeLine());
+            alllines.addAll(jrd);
+            try {
+                long lines = Files.lines(JFiles.get(i).toPath()).count();
+                System.out.println(lines);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
+        }
+        System.out.println("all lines: "+alllines.size());
+        for (int k=0;k<alllines.size();k++){
+            System.out.println(alllines.get(k).getFileP()+" : "+alllines.get(k).getLineNumber()+" : "+alllines.get(k).getCodeLine());
         }
 
 
@@ -68,7 +73,7 @@ public class MainBoard {
         for(int i =0;i<ManifFile.size();i++){
             ManifestFileReader mr = new ManifestFileReader();
             ManifestDetails mfd = mr.readDetails(ManifFile.get(i));
-            
+
         }
     }
 
