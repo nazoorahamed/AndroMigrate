@@ -1,12 +1,13 @@
 package FileReader.ManifestReader;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManifestFileReader {
 
-    public ManifestDetails readDetails(){
+    public ManifestDetails readDetails(File file){
 
 
         List<String> usesPermisiion = new ArrayList<>();

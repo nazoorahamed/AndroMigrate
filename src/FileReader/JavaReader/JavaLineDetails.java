@@ -1,10 +1,14 @@
 package FileReader.JavaReader;
 
+import java.io.File;
+
 public class JavaLineDetails {
+    private File fileP;
     private int lineNumber;
     private String codeLine;
 
-    public JavaLineDetails(int lineNumber, String codeLine) {
+    public JavaLineDetails(File file, int lineNumber, String codeLine) {
+        this.fileP = file;
         this.lineNumber = lineNumber;
         this.codeLine = codeLine;
     }
@@ -23,5 +27,13 @@ public class JavaLineDetails {
 
     public void setCodeLine(String codeLine) {
         this.codeLine = codeLine;
+    }
+
+    public File getFileP() {
+        return fileP;
+    }
+
+    public void setFileP(File fileP) {
+        this.fileP = fileP;
     }
 }

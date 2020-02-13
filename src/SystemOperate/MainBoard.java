@@ -2,6 +2,10 @@ package SystemOperate;
 
 import FileReader.GradleReader.GradleDetails;
 import FileReader.GradleReader.GradleFIleReader;
+import FileReader.JavaReader.JavaFileReader;
+import FileReader.JavaReader.JavaLineDetails;
+import FileReader.ManifestReader.ManifestDetails;
+import FileReader.ManifestReader.ManifestFileReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,8 +16,8 @@ public class MainBoard {
     public static List<File> JFiles;
     public static List<File> GradleFile;
     public static List<File> ManifFile;
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
 
 //        File folder = new File("/Users/nazoorahamed/Desktop/ProB");
 //        File[] listOfFiles = folder.listFiles();
@@ -26,7 +30,7 @@ public class MainBoard {
 //                System.out.println("Directory :"+file.getName());
 //            }
 //        }
-        String fname = "/Users/nazoorahamed/Downloads/MyApplication2";
+        String fname = "/Users/nazoorahamed/Desktop/MyApplication";
         JFiles = new ArrayList<File>();
         GradleFile = new ArrayList<File>();
         ManifFile = new ArrayList<File>();
@@ -37,6 +41,35 @@ public class MainBoard {
         System.out.println("Manifest files : "+ManifFile.size());
 
 
+        for (int i=0;i<GradleFile.size();i++){
+            GradleFIleReader gd = new GradleFIleReader();
+            GradleDetails gds = gd.readDetails(GradleFile.get(i));
+            System.out.println(gds.getCompileSdk());
+            System.out.println(gds.getMinSdk());
+            System.out.println(gds.getTargetSdk());
+            System.out.println(gds.getDependencies().size());
+            System.out.println(gds.getCodeDetails().size());
+
+        }
+
+
+
+        for(int i=0;i<JFiles.size();i++){
+            JavaFileReader jr = new JavaFileReader();
+            List<JavaLineDetails> jrd =  jr.readDetails(JFiles.get(i));
+            for (int k=0;k<jrd.size();k++){
+                System.out.println(jrd.get(k).getFileP()+" : "+jrd.get(k).getLineNumber()+" : "+jrd.get(k).getCodeLine());
+            }
+
+        }
+
+
+
+        for(int i =0;i<ManifFile.size();i++){
+            ManifestFileReader mr = new ManifestFileReader();
+            ManifestDetails mfd = mr.readDetails(ManifFile.get(i));
+            
+        }
     }
 
     public static List<File> listf(String directoryName) {
@@ -68,24 +101,13 @@ public class MainBoard {
                     System.out.println(file.getAbsolutePath());
                     GradleFile.add(file);
 
-                    GradleFIleReader gd = new GradleFIleReader();
-                    GradleDetails gds = gd.readDetails();
-                    System.out.println(gds.getCompileSdk());
-                    System.out.println(gds.getMinSdk());
-                    System.out.println(gds.getTargetSdk());
-                    System.out.println(gds.getDependencies().size());
-
                 }
 
             } else if (file.isDirectory()) {
                 resultList.addAll(listf(file.getAbsolutePath()));
             }
         }
-        //System.out.println(fList);
-
-
         return resultList;
-
     }
 
     public static String getFileExtension(String fullName) {
