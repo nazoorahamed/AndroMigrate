@@ -1,5 +1,8 @@
 package SystemOperate;
 
+import FileReader.GradleReader.GradleDetails;
+import FileReader.GradleReader.GradleFIleReader;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +67,13 @@ public class MainBoard {
                     System.out.println("gradle file");
                     System.out.println(file.getAbsolutePath());
                     GradleFile.add(file);
+
+                    GradleFIleReader gd = new GradleFIleReader();
+                    GradleDetails gds = gd.readDetails();
+                    System.out.println(gds.getCompileSdk());
+                    System.out.println(gds.getMinSdk());
+                    System.out.println(gds.getTargetSdk());
+                    System.out.println(gds.getDependencies().size());
 
                 }
 
