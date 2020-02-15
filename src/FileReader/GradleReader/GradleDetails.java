@@ -1,15 +1,18 @@
 package FileReader.GradleReader;
 
+import java.io.File;
 import java.util.List;
 
 public class GradleDetails {
+    private File file;
     private String targetSdk;
     private String compileSdk;
     private String minSdk;
     private List<String> dependencies;
     private List<GradleLineDetails> codeDetails;
 
-    public GradleDetails(String targetSdk, String compileSdk, String minSdk, List<String> dependencies, List<GradleLineDetails> details) {
+    public GradleDetails(File filep, String targetSdk, String compileSdk, String minSdk, List<String> dependencies, List<GradleLineDetails> details) {
+        this.file = filep;
         this.targetSdk = targetSdk;
         this.compileSdk = compileSdk;
         this.minSdk = minSdk;
@@ -55,5 +58,13 @@ public class GradleDetails {
 
     public void setCodeDetails(List<GradleLineDetails> codeDetails) {
         this.codeDetails = codeDetails;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

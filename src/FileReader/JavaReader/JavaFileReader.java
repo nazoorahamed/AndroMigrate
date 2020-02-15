@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaFileReader {
-    List<JavaLineDetails> lineDetails;
+
     public List<JavaLineDetails> readDetails(File file) {
+        List<JavaLineDetails> lineDetails;
         lineDetails = new ArrayList<>();
         try {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -19,7 +20,6 @@ public class JavaFileReader {
                         // process the line.
                         number++;
                         JavaLineDetails jr = new JavaLineDetails(file,number,line);
-
 
                         lineDetails.add(jr);
 

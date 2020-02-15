@@ -42,10 +42,11 @@ public class MainBoard {
         System.out.println("Java Files : "+JFiles.size());
         System.out.println("Manifest files : "+ManifFile.size());
 
+        // Read gradle files
 
         for (int i=0;i<GradleFile.size();i++){
             GradleFIleReader gd = new GradleFIleReader();
-            GradleDetails gds = gd.readDetails(GradleFile.get(i));
+            GradleDetails gds = gd.getGradleDetails(GradleFile.get(i));
 
         }
 
@@ -63,11 +64,11 @@ public class MainBoard {
                 e.printStackTrace();
             }
         }
-        System.out.println("all lines: "+alllines.size());
-        for (int k=0;k<alllines.size();k++){
-            System.out.println(alllines.get(k).getFileP()+" : "+alllines.get(k).getLineNumber()+" : "+alllines.get(k).getCodeLine());
-        }
 
+//        for (int k=0;k<alllines.size();k++){
+//            System.out.println(alllines.get(k).getFileP()+" : "+alllines.get(k).getLineNumber()+" : "+alllines.get(k).getCodeLine());
+//        }
+        System.out.println("all lines: "+alllines.size());
 
 
         for(int i =0;i<ManifFile.size();i++){
@@ -101,7 +102,7 @@ public class MainBoard {
                     JFiles.add(file);
                     System.out.println(file.getAbsolutePath());
                 }
-                if(type.equals("gradle") && file.getAbsolutePath().contains("build.gradle")){
+                if(type.equals("gradle") && file.getAbsolutePath().contains("build.gradle") && file.getAbsolutePath().contains("app")){
                     System.out.println("gradle file");
                     System.out.println(file.getAbsolutePath());
                     GradleFile.add(file);
