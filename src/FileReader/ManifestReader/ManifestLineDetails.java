@@ -1,10 +1,14 @@
 package FileReader.ManifestReader;
 
+import java.io.File;
+
 public class ManifestLineDetails {
+    private File file;
     private int lineNumber;
     private String codeLine;
 
-    public ManifestLineDetails(int lineNumber, String codeLine) {
+    public ManifestLineDetails(File filep, int lineNumber, String codeLine) {
+        this.file = filep;
         this.lineNumber = lineNumber;
         this.codeLine = codeLine;
     }
@@ -23,5 +27,13 @@ public class ManifestLineDetails {
 
     public void setCodeLine(String codeLine) {
         this.codeLine = codeLine;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }
