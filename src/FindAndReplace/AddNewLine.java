@@ -4,9 +4,7 @@ import java.io.*;
 
 public class AddNewLine {
 
-    public void insertStringInFile
-            (File inFile, int lineno, String lineToBeInserted)
-            throws Exception {
+    public void insertStringInFile(File inFile, int lineno, String lineToBeInserted) throws Exception {
         // temp file
         File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/1st Semester/Concurrent Programing/Tutorials/Thread States/src/tempt.java");
 
@@ -31,10 +29,10 @@ public class AddNewLine {
         String lineToRemove = "  //          Thread.wait(1500);";
         String currentLine;
 
-        while((currentLine = in.readLine()) != null) {
+        while ((currentLine = in.readLine()) != null) {
             // trim newline when comparing with lineToRemove
             String trimmedLine = currentLine.trim();
-            if(trimmedLine.equals(lineToRemove)) continue;
+            if (trimmedLine.equals(lineToRemove)) continue;
             out.write(currentLine + System.getProperty("line.separator"));
         }
         out.flush();
