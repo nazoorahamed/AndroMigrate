@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="561c7433-2177-4183-bdb4-234a2a4c2765" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FindAndReplace/AddNewLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FindAndReplace/ReplaceLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AndroMigrate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AndroMigrate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AndroMigrate/SystemOperate/MainBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AndroMigrate/SystemOperate/MainBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleFIleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleFIleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleLineDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/GradleReader/GradleLineDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/JavaReader/JavaFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/JavaReader/JavaFileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/JavaReader/JavaLineDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/JavaReader/JavaLineDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestFileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestLineDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileReader/ManifestReader/ManifestLineDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SystemOperate/MainBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SystemOperate/MainBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,15 +18,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>androidM</find>
-      <find>androidm</find>
-      <find>manife</find>
-      <find>main</find>
-      <find>mani</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +32,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -133,11 +118,46 @@
       <workItem from="1582089913152" duration="205000" />
       <workItem from="1582304022143" duration="647000" />
       <workItem from="1582633344164" duration="434000" />
+      <workItem from="1583218316889" duration="1788000" />
+      <workItem from="1583301566194" duration="3330000" />
+      <workItem from="1583593501350" duration="762000" />
+      <workItem from="1583641205460" duration="607000" />
+      <workItem from="1583671972080" duration="3742000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="352" key="GridCell.Tab.0.bottom" timestamp="1583514155337">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="228" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1583219882528" />
+    <state width="1398" height="228" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1583260399367" />
+    <state width="1398" height="352" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1583514155337" />
+    <state width="1398" height="352" key="GridCell.Tab.0.center" timestamp="1583514155336">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="228" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1583219882526" />
+    <state width="1398" height="228" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1583260399366" />
+    <state width="1398" height="352" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1583514155336" />
+    <state width="1398" height="352" key="GridCell.Tab.0.left" timestamp="1583514155335">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="228" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1583219882525" />
+    <state width="1398" height="228" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1583260399365" />
+    <state width="1398" height="352" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1583514155335" />
+    <state width="1398" height="352" key="GridCell.Tab.0.right" timestamp="1583514155336">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="228" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1583219882527" />
+    <state width="1398" height="228" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1583260399366" />
+    <state width="1398" height="352" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1583514155336" />
+    <state x="400" y="192" width="639" height="486" key="find.popup" timestamp="1583301649324">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="400" y="192" width="639" height="486" key="find.popup/0.23.1440.825@0.23.1440.825" timestamp="1583301649324" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

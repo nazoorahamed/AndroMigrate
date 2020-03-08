@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class GradleFIleReader {
@@ -24,7 +23,6 @@ public class GradleFIleReader {
                     GradleLineDetails jr = new GradleLineDetails(file,number,line);
 
                     grLineDetails.add(jr);
-                    System.out.println("file name : "+file.getName());
 
                 }
             }
@@ -84,16 +82,16 @@ public class GradleFIleReader {
             }
         }
 
-        HashMap<String, String> capitalCities = new HashMap<>();
-
-        // Add keys and values (Country, City)
-        capitalCities.put("England", "London");
-        capitalCities.put("Germany", "Berlin");
-        capitalCities.put("Norway", "Oslo");
-        capitalCities.put("USA", "Washington DC");
-
-        System.out.println(capitalCities.get("England"));
-        System.out.println(capitalCities);
+//        HashMap<String, String> capitalCities = new HashMap<>();
+//
+//        // Add keys and values (Country, City)
+//        capitalCities.put("England", "London");
+//        capitalCities.put("Germany", "Berlin");
+//        capitalCities.put("Norway", "Oslo");
+//        capitalCities.put("USA", "Washington DC");
+//
+//        System.out.println(capitalCities.get("England"));
+//        System.out.println(capitalCities);
         
         return depends;
     }
