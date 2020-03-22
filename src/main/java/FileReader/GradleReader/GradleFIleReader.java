@@ -12,6 +12,7 @@ import java.util.List;
 public class GradleFIleReader {
 
     public List<GradleLineDetails> readDetails(File file) {
+
         List<GradleLineDetails> grLineDetails = new ArrayList<>();
 
         try {
@@ -21,9 +22,7 @@ public class GradleFIleReader {
                 while ((line = br.readLine()) != null) {
                     number++;
                     GradleLineDetails jr = new GradleLineDetails(file,number,line);
-
                     grLineDetails.add(jr);
-
                 }
             }
         } catch (IOException e) {
@@ -40,11 +39,14 @@ public class GradleFIleReader {
         String targetSdk = null;
         String compileSdk = null;
         String minSdk = null;
+
         for (int i =0;i<detailsLine.size();i++){
+
             String line = detailsLine.get(i).getCodeLine();
 
             if (line.contains("targetSdkVersion")){
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
+                changeSdkLevel(detailsLine.get(i));
                 targetSdk = findNumber(line);
             }else if (line.contains("compileSdkVersion")){
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
@@ -54,7 +56,7 @@ public class GradleFIleReader {
                 minSdk = findNumber(line);
             }
         }
-         depends = findDependencies(detailsLine);
+        depends = findDependencies(detailsLine);
 
         System.out.println(targetSdk+" : "+compileSdk+" : "+minSdk);
 
@@ -62,7 +64,6 @@ public class GradleFIleReader {
             System.out.println(depends.get(i));
         }
         return new GradleDetails(file,targetSdk,compileSdk,minSdk,depends,detailsLine);
-
     }
 
     public List<String> findDependencies(List<GradleLineDetails> lines){
@@ -78,22 +79,29 @@ public class GradleFIleReader {
             while (!lines.get(linenumber).getCodeLine().contains("}")){
                 linenumber++;
                 depends.add(lines.get(linenumber-1).getCodeLine());
-
             }
         }
-
-//        HashMap<String, String> capitalCities = new HashMap<>();
-//
-//        // Add keys and values (Country, City)
-//        capitalCities.put("England", "London");
-//        capitalCities.put("Germany", "Berlin");
-//        capitalCities.put("Norway", "Oslo");
-//        capitalCities.put("USA", "Washington DC");
-//
-//        System.out.println(capitalCities.get("England"));
-//        System.out.println(capitalCities);
-        
         return depends;
+    }
+
+    public void changeSdkLevel(GradleLineDetails gld){
+
+    }
+
+    public void changeSdkToolVersion(GradleLineDetails gld){
+
+    }
+
+    public void changeAppCompactSupport(GradleLineDetails gld){
+
+    }
+
+    public void changeDesignSupport(GradleLineDetails gld){
+
+    }
+
+    public void changeConstrainsSupport(GradleLineDetails gld){
+
     }
 
     public String findNumber(String string){

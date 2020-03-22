@@ -1,17 +1,19 @@
 package FindAndReplace;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 
 public class ReplaceLine {
 
-    public void replaceSelected(String replaceWith, String type) {
+    public void replaceSelected(File fileP, String replaceWith, String type) {
         try {
             // input the file content to the StringBuffer "input"
             String fileName = "/Users/nazoorahamed/Desktop/4th Year/1st Semester/Concurrent Programing/Tutorials/Thread States/src/MyThread.java";
 
-            BufferedReader file = new BufferedReader(new FileReader(fileName));
+            BufferedReader file = new BufferedReader(new FileReader(fileP.getAbsolutePath()));
+            System.out.println(" So  :"+ fileP.getAbsolutePath());
             StringBuffer inputBuffer = new StringBuffer();
             String line;
 
