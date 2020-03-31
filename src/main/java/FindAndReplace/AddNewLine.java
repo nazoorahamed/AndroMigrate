@@ -4,9 +4,10 @@ import java.io.*;
 
 public class AddNewLine {
 
-    public void insertStringInFile(File inFile, int lineno, String lineToBeInserted) throws Exception {
+    public void insertStringInFile (File inFile, int lineno, String lineToBeInserted)
+            throws Exception {
         // temp file
-        File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/1st Semester/Concurrent Programing/Tutorials/Thread States/src/tempt.java");
+        File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
 
         // input
         FileInputStream fis = new FileInputStream(inFile);
@@ -25,15 +26,39 @@ public class AddNewLine {
             out.println(thisLine);
             i++;
         }
+        out.flush();
+        out.close();
+        in.close();
+        inFile.delete();
+        outFile.renameTo(inFile);
+    }
 
-        String lineToRemove = "  //          Thread.wait(1500);";
+
+    public void removeLine(File inFile, int lineno) throws Exception{
+        File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
+
+        // input
+        FileInputStream fis = new FileInputStream(inFile);
+        BufferedReader in = new BufferedReader
+                (new InputStreamReader(fis));
+
+        // output
+        FileOutputStream fos = new FileOutputStream(outFile);
+        PrintWriter out = new PrintWriter(fos);
+
+
+        String lineToRemove = "//          Thread.wait(1500);";
         String currentLine;
-
-        while ((currentLine = in.readLine()) != null) {
+        int i = 1;
+        while((currentLine = in.readLine()) != null) {
             // trim newline when comparing with lineToRemove
             String trimmedLine = currentLine.trim();
-            if (trimmedLine.equals(lineToRemove)) continue;
-            out.write(currentLine + System.getProperty("line.separator"));
+            if(i == lineno) {
+                i++;
+            } else {
+                out.write(currentLine + System.getProperty("line.separator"));
+                i++;
+            }
         }
         out.flush();
         out.close();
@@ -42,5 +67,6 @@ public class AddNewLine {
         inFile.delete();
 
         outFile.renameTo(inFile);
+
     }
 }

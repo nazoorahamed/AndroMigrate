@@ -6,6 +6,7 @@ import FileReader.JavaReader.JavaFileReader;
 import FileReader.JavaReader.JavaLineDetails;
 import FileReader.ManifestReader.ManifestDetails;
 import FileReader.ManifestReader.ManifestFileReader;
+import FindAndReplace.CheckLine;
 import FindAndReplace.ReplaceLine;
 
 import java.io.File;
@@ -94,29 +95,29 @@ public class MainBoard {
             GradleDetails gds = gd.getGradleDetails(GradleFile.get(i));
         }
 
-        GradleFIleReader grd = new GradleFIleReader();
-        ReplaceLine replaceLine = new ReplaceLine();
-        File fl = new File(fname);
-        replaceLine.replaceSelected(fl,"ss","ss");
-
         List<JavaLineDetails> alllines = new ArrayList<>();
         for(int i=0;i<JFiles.size();i++){
 
             JavaFileReader jr = new JavaFileReader();
             List<JavaLineDetails> jrd =  jr.readDetails(JFiles.get(i));
             alllines.addAll(jrd);
+
             try {
                 long lines = Files.lines(JFiles.get(i).toPath()).count();
-                System.out.println(lines);
+                System.out.println("Number of Lines: " + lines);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        if (alllines.size() != 0){
+            for (int k=0;k<alllines.size();k++){
+                CheckLine checkLine = new CheckLine();
+                checkLine.checkLine(alllines.get(1));
+               // System.out.println(alllines.get(k).getFileP()+" : "+alllines.get(k).getLineNumber()+" : "+alllines.get(k).getCodeLine());
 
-//        for (int k=0;k<alllines.size();k++){
-//            System.out.println(alllines.get(k).getFileP()+" : "+alllines.get(k).getLineNumber()+" : "+alllines.get(k).getCodeLine());
-//        }
-   //     System.out.println("all lines: "+alllines.size());
+            }
+        }
+
 
 
         for(int i =0;i<ManifFile.size();i++){
