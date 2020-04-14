@@ -2,22 +2,33 @@ package FileReader.GradleReader;
 
 import java.io.File;
 import java.util.List;
+import java.util.TreeMap;
 
 public class GradleDetails {
     private File file;
     private String targetSdk;
+    private TreeMap<String,Integer> targetsdkline;
     private String compileSdk;
     private String minSdk;
-    private List<String> dependencies;
+    private List<GradleDependencies> dependencies;
     private List<GradleLineDetails> codeDetails;
 
-    public GradleDetails(File filep, String targetSdk, String compileSdk, String minSdk, List<String> dependencies, List<GradleLineDetails> details) {
+    public GradleDetails(File filep, String targetSdk, TreeMap<String,Integer> targetsdkline, String compileSdk, String minSdk, List<GradleDependencies> dependencies, List<GradleLineDetails> details) {
         this.file = filep;
         this.targetSdk = targetSdk;
+        this.targetsdkline = targetsdkline;
         this.compileSdk = compileSdk;
         this.minSdk = minSdk;
         this.dependencies = dependencies;
         this.codeDetails = details;
+    }
+
+    public TreeMap<String, Integer> getTargetsdkline() {
+        return targetsdkline;
+    }
+
+    public void setTargetsdkline(TreeMap<String, Integer> targetsdkline) {
+        this.targetsdkline = targetsdkline;
     }
 
     public String getTargetSdk() {
@@ -44,11 +55,11 @@ public class GradleDetails {
         this.minSdk = minSdk;
     }
 
-    public List<String> getDependencies() {
+    public List<GradleDependencies> getDependencies() {
         return dependencies;
     }
 
-    public void setDependencies(List<String> dependencies) {
+    public void setDependencies(List<GradleDependencies> dependencies) {
         this.dependencies = dependencies;
     }
 

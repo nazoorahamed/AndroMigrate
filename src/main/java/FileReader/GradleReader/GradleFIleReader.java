@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 public class GradleFIleReader {
 
@@ -35,10 +36,12 @@ public class GradleFIleReader {
     public GradleDetails getGradleDetails(File file){
         List<String> depends;
         List<GradleLineDetails> detailsLine = readDetails(file);
-
+        List<GradleDependencies> dependenciesList = findDependencies(file,detailsLine);
         String targetSdk = null;
         String compileSdk = null;
         String minSdk = null;
+        String buildTool = null;
+        TreeMap<String,Integer> targerSdkLine = new TreeMap<String, Integer>();
 
         for (int i =0;i<detailsLine.size();i++){
 
@@ -48,27 +51,36 @@ public class GradleFIleReader {
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
                 changeSdkLevel(detailsLine.get(i));
                 targetSdk = findNumber(line);
+                targerSdkLine.put("targetSdkVersion",detailsLine.get(i).getLineNumber());
             }else if (line.contains("compileSdkVersion")){
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
                 compileSdk = findNumber(line);
+                targerSdkLine.put("compileSdkVersion",detailsLine.get(i).getLineNumber());
             }else if (line.contains("minSdkVersion")){
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
                 minSdk = findNumber(line);
+                targerSdkLine.put("minSdkVersion",detailsLine.get(i).getLineNumber());
+            }else if (line.contains("buildToolsVersion")){
+                System.out.println( detailsLine.get(i).getLineNumber()+" : True");
+                targerSdkLine.put("buildToolsVersion",detailsLine.get(i).getLineNumber());
+            }else
+            if(line.contains("defaultConfig")){
+                System.out.println( detailsLine.get(i).getLineNumber()+" : True");
+                targerSdkLine.put("defaultConfig",detailsLine.get(i).getLineNumber());
             }
         }
-        depends = findDependencies(detailsLine);
+        //depends = findDependencies(detailsLine);
 
         System.out.println(targetSdk+" : "+compileSdk+" : "+minSdk);
 
-        for (int i=0;i<depends.size();i++){
-            System.out.println(depends.get(i));
-        }
-        return new GradleDetails(file,targetSdk,compileSdk,minSdk,depends,detailsLine);
+
+        return new GradleDetails(file,targetSdk,targerSdkLine,compileSdk,minSdk,dependenciesList,detailsLine);
     }
 
-    public List<String> findDependencies(List<GradleLineDetails> lines){
+    public List<GradleDependencies> findDependencies(File file,List<GradleLineDetails> lines){
         int linenumber = 0;
         List<String> depends = new ArrayList<>();
+        List<GradleDependencies> gl = new ArrayList<>();
         for (int i=0;i<lines.size();i++){
             if(lines.get(i).getCodeLine().contains("dependencies")){
                 linenumber = lines.get(i).getLineNumber();
@@ -78,10 +90,12 @@ public class GradleFIleReader {
         if (linenumber != 0){
             while (!lines.get(linenumber).getCodeLine().contains("}")){
                 linenumber++;
+                GradleDependencies gd = new GradleDependencies(file,linenumber,lines.get(linenumber-1).getCodeLine());
                 depends.add(lines.get(linenumber-1).getCodeLine());
+                gl.add(gd);
             }
         }
-        return depends;
+        return gl;
     }
 
     public void changeSdkLevel(GradleLineDetails gld){
