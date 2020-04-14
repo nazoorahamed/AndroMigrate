@@ -14,47 +14,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class APICodeGenerator {
-    GradleDetails gradleDetails;
-    ManifestDetails manifestDetails;
-    List<JavaLineDetails> javaLineDetails= new ArrayList<>();
+
     public void getSourceFiles(List<File> jFile,List<File> gradleFile,List<File> manifFile){
 
+        SetupMigration setupMigration = new SetupMigration();
+        setupMigration.preProcessCode(readManifestFile(manifFile),readGradleFile(gradleFile),jFile);
+    }
 
-
-        // Read gradle files
-
-        for (int i=0;i<gradleFile.size();i++){
-            GradleFIleReader gd = new GradleFIleReader();
-            gradleDetails = gd.getGradleDetails(gradleFile.get(i));
-        }
-
-        // read java files
-
-        for(int i=0;i<jFile.size();i++){
-
-            JavaFileReader jr = new JavaFileReader();
-            List<JavaLineDetails> jrd =  jr.readDetails(jFile.get(i));
-            javaLineDetails.addAll(jrd);
-
-            try {
-                long lines = Files.lines(jFile.get(i).toPath()).count();
-                System.out.println("Number of Lines: " + lines);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("Out :"+ javaLineDetails.size());
-
+    public ManifestDetails readManifestFile(List<File> file){
+        ManifestDetails manifestDetails =null;
         //read manifest files
-        for(int i =0;i<manifFile.size();i++){
+        for(int i =0;i<file.size();i++){
             ManifestFileReader mr = new ManifestFileReader();
-            manifestDetails = mr.readDetails(manifFile.get(i));
+            manifestDetails = mr.readDetails(file.get(i));
             for (int k =0;k<manifestDetails.getCodeDetails().size();k++){
                 System.out.println("manifest : "+manifestDetails.getCodeDetails().get(k).getCodeLine() + ": "+ manifestDetails.getCodeDetails().get(k).getLineNumber());
             }
         }
-        SetupMigration setupMigration = new SetupMigration();
-        setupMigration.preProcessCode(manifestDetails,gradleDetails,javaLineDetails);
+        return manifestDetails;
     }
+
+    public GradleDetails readGradleFile(List<File> file){
+        GradleDetails gradleDetails = null;
+        // Read gradle files
+
+        for (int i=0;i<file.size();i++){
+            GradleFIleReader gd = new GradleFIleReader();
+            gradleDetails = gd.getGradleDetails(file.get(i));
+        }
+        return gradleDetails;
+    }
+
+    public List<JavaLineDetails> readJavaFile(File file){
+        // read java files
+            JavaFileReader jr = new JavaFileReader();
+            List<JavaLineDetails> jrd =  jr.readDetails(file);
+
+            try {
+                long lines = Files.lines(file.toPath()).count();
+                System.out.println("Number of Lines: " + lines);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        return jrd;
+    }
+
 
 }

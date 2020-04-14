@@ -2,9 +2,9 @@ package FindAndReplace;
 
 import java.io.*;
 
-public class AddNewLine {
+public class LineEditor {
 
-    public void insertStringInFile (File inFile, int lineno, String lineToBeInserted)
+    public void addNewLine (File inFile, int lineno, String lineToBeInserted)
             throws Exception {
         // temp file
         File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
@@ -31,6 +31,15 @@ public class AddNewLine {
         in.close();
         inFile.delete();
         outFile.renameTo(inFile);
+    }
+    public  void replaceLine(File file,int lineno,String line){
+        try {
+            removeLine(file,lineno);
+            addNewLine(file, lineno, line);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
