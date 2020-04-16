@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 public class SetupMigration {
     APICodeGenerator codeGenerator = new APICodeGenerator();
-    LineEditor addNewLine = new LineEditor();
+    LineEditor lineEditor = new LineEditor();
 
     public void preProcessCode(ManifestDetails manifestDetails, GradleDetails gradleDetails, List<File> jFile, List<File> maniFile, List<File> gradFile) {
         Gradlesetup(gradleDetails, jFile, maniFile, gradFile);
@@ -45,8 +45,8 @@ public class SetupMigration {
         if (targersdk < 29) {
             try {
                 //addNewLine.removeLine(gdDetails.getFile(),sdklinedetails.get("targetSdkVersion"));
-                addNewLine.replaceLine(gdDetails.getFile(), sdklinedetails.get("targetSdkVersion"), "        targetSdkVersion 29");
-                addNewLine.addNewLine(gdDetails.getFile(), 9, "//nothing");
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("targetSdkVersion"), "        targetSdkVersion 29");
+                lineEditor.addNewLine(gdDetails.getFile(), 9, "//nothing");
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
@@ -63,7 +63,7 @@ public class SetupMigration {
         if (compilesdk < 29) {
             try {
                 //addNewLine.removeLine(gdDetails.getFile(),sdklinedetails.get("targetSdkVersion"));
-                addNewLine.replaceLine(gdDetails.getFile(), sdklinedetails.get("compileSdkVersion"), "    compileSdkVersion 29");
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("compileSdkVersion"), "    compileSdkVersion 29");
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
@@ -80,11 +80,11 @@ public class SetupMigration {
         for (int i = 0; i < dependenciesList.size(); i++) {
             if (dependenciesList.get(i).getCodeLine().contains("com.android.support:appcompat-v7")) {
                 System.out.println(dependenciesList.get(i).getLineNumber() + " yes depend");
-                addNewLine.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.appcompat:appcompat:1.0.0'");
+                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.appcompat:appcompat:1.0.0'");
             }
             if (dependenciesList.get(i).getCodeLine().contains("com.android.support.constraint:constraint-layout")) {
                 System.out.println(dependenciesList.get(i).getLineNumber() + " yes depend");
-                addNewLine.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'");
+                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'");
             }
         }
     }
@@ -101,17 +101,11 @@ public class SetupMigration {
             System.out.println("no sdk line found");
         } else {
             try {
-                addNewLine.removeLine(manifestDetails.getFile(), usesSdk.getLineNumber());
+                lineEditor.removeLine(manifestDetails.getFile(), usesSdk.getLineNumber());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-
-        for (int i = 0; i < usesPermission.size(); i++) {
-
-        }
-
     }
 
     public void JavaCodeLineSetup(List<File> jFile) {
