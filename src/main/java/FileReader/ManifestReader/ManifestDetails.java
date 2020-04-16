@@ -1,41 +1,52 @@
 package FileReader.ManifestReader;
 
+import java.io.File;
 import java.util.List;
 
 public class ManifestDetails {
-    private String usesSdk;
-    private List<String> usesPermission;
-    private List<String> services;
+    private File file;
+    private ManifestLineDetails usesSdk;
+    private List<ManifestLineDetails> usesPermission;
+    private List<ManifestLineDetails> services;
     private List<ManifestLineDetails> codeDetails;
 
-    public ManifestDetails(String usesSdk, List<String> usesPermission, List<String> services, List<ManifestLineDetails> details) {
+    public ManifestDetails(File pfile,ManifestLineDetails usesSdk, List<ManifestLineDetails> usesPermission, List<ManifestLineDetails> services, List<ManifestLineDetails> details) {
+        this.file = pfile;
         this.usesSdk = usesSdk;
         this.usesPermission = usesPermission;
         this.services = services;
         this.codeDetails = details;
     }
 
-    public String getUsesSdk() {
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public ManifestLineDetails getUsesSdk() {
         return usesSdk;
     }
 
-    public void setUsesSdk(String usesSdk) {
+    public void setUsesSdk(ManifestLineDetails usesSdk) {
         this.usesSdk = usesSdk;
     }
 
-    public List<String> getUsesPermission() {
+    public List<ManifestLineDetails> getUsesPermission() {
         return usesPermission;
     }
 
-    public void setUsesPermission(List<String> usesPermission) {
+    public void setUsesPermission(List<ManifestLineDetails> usesPermission) {
         this.usesPermission = usesPermission;
     }
 
-    public List<String> getServices() {
+    public List<ManifestLineDetails> getServices() {
         return services;
     }
 
-    public void setServices(List<String> services) {
+    public void setServices(List<ManifestLineDetails> services) {
         this.services = services;
     }
 

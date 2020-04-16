@@ -1,6 +1,7 @@
 package FileReader.ManifestReader;
 
 
+import FileReader.GradleReader.GradleDetails;
 import FileReader.GradleReader.GradleLineDetails;
 
 import java.io.BufferedReader;
@@ -12,11 +13,8 @@ import java.util.List;
 
 public class ManifestFileReader {
 
-    public ManifestDetails readDetails(File file){
+    public List<ManifestLineDetails> readDetails(File file){
 
-
-        List<String> usesPermission = new ArrayList<>();
-        List<String> services = new ArrayList<>();
         List<ManifestLineDetails> details = new ArrayList<>();
 
         try {
@@ -28,15 +26,43 @@ public class ManifestFileReader {
                     ManifestLineDetails jr = new ManifestLineDetails(file,number,line);
 
                     details.add(jr);
-
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return  details;
+    }
 
-        ManifestDetails mfd = new ManifestDetails("",usesPermission,services,details);
+    public ManifestDetails getManifestDetails(File file){
 
-        return  mfd;
+        List<ManifestLineDetails> detailsLine = readDetails(file);
+        List<ManifestLineDetails> usesPermission = new ArrayList<>();
+        List<ManifestLineDetails> services = new ArrayList<>();
+        ManifestLineDetails usesSdk = null;
+
+        for (int i =0;i<detailsLine.size();i++){
+
+            String line = detailsLine.get(i).getCodeLine();
+            int linenumber = detailsLine.get(i).getLineNumber();
+
+            if (line.contains("uses-sdk")){
+                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest uses sdk True");
+                usesSdk = new ManifestLineDetails(file,linenumber,detailsLine.get(i).getCodeLine());
+            }
+
+            if (line.contains("uses-permission")){
+                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest uses permission True");
+                ManifestLineDetails jr = new ManifestLineDetails(file,linenumber,line);
+                usesPermission.add(jr);
+            }
+
+            if (line.contains("service")){
+                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest service True");
+                ManifestLineDetails jr = new ManifestLineDetails(file,linenumber,line);
+                services.add(jr);
+            }
+        }
+        return new ManifestDetails(file,usesSdk,usesPermission,services,detailsLine);
     }
 }

@@ -18,30 +18,28 @@ public class APICodeGenerator {
     public void getSourceFiles(List<File> jFile,List<File> gradleFile,List<File> manifFile){
 
         SetupMigration setupMigration = new SetupMigration();
-        setupMigration.preProcessCode(readManifestFile(manifFile),readGradleFile(gradleFile),jFile);
+        setupMigration.preProcessCode(readManifestFile(manifFile.get(0)),readGradleFile(gradleFile.get(0)),jFile,manifFile,gradleFile);
     }
 
-    public ManifestDetails readManifestFile(List<File> file){
+    public ManifestDetails readManifestFile(File file){
         ManifestDetails manifestDetails =null;
         //read manifest files
-        for(int i =0;i<file.size();i++){
+
             ManifestFileReader mr = new ManifestFileReader();
-            manifestDetails = mr.readDetails(file.get(i));
+            manifestDetails = mr.getManifestDetails(file);
             for (int k =0;k<manifestDetails.getCodeDetails().size();k++){
-                System.out.println("manifest : "+manifestDetails.getCodeDetails().get(k).getCodeLine() + ": "+ manifestDetails.getCodeDetails().get(k).getLineNumber());
-            }
+               // System.out.println("manifest : "+manifestDetails.getCodeDetails().get(k).getCodeLine() + ": "+ manifestDetails.getCodeDetails().get(k).getLineNumber());
         }
         return manifestDetails;
     }
 
-    public GradleDetails readGradleFile(List<File> file){
+    public GradleDetails readGradleFile(File file){
         GradleDetails gradleDetails = null;
         // Read gradle files
 
-        for (int i=0;i<file.size();i++){
             GradleFIleReader gd = new GradleFIleReader();
-            gradleDetails = gd.getGradleDetails(file.get(i));
-        }
+            gradleDetails = gd.getGradleDetails(file);
+
         return gradleDetails;
     }
 
